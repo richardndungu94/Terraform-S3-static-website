@@ -1,0 +1,67 @@
+name: IaC and Code Security Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+
+jobs:
+  terraform-security:
+    name: Terraform Security Scan
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.7.0
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Validate
+        run: terraform validate
+
+      - name: Terraform Plan
+        run: terraform plan -no-color
+
+      - name: Run tfsec (Terraform IaC security)
+        uses: aquasecurity/tfsec-action@v1.0.2
+        with:
+          soft_fail: false
+
+  semgrep-scan:
+    name: Semgrep Static Analysis
+    runs-on: ubuntu-latest
+    needs: terraform-security
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: returntocorp/semgrep-action@v1
+        with:
+          config: >-
+            p/default
+          publishToken: ${{ secrets.SEMGREP_APP_TOKEN }}
+          publishDeployment: richardndungu  # Your Semgrep Cloud org name (optional)
+
+  sonarqube:
+    name: SonarQube Code Quality
+    runs-on: ubuntu-latest
+    needs: semgrep-scan
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: SonarQube Scan
+        uses: sonarsource/sonarqube-scan-action@v2
+        with:
+          args: >
+            -Dsonar.projectKey=Terraform-aws-webserver
+            -Dsonar.organization=richardndungu
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
