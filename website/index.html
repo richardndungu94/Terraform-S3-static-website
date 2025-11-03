@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My S3 Static Website</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+        
+        .container {
+            text-align: center;
+            padding: 60px 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            max-width: 600px;
+        }
+        
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .emoji {
+            font-size: 4em;
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin: 15px 0;
+        }
+        
+        .tech-stack {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 8px 16px;
+            margin: 5px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            font-size: 0.9em;
+        }
+        
+        .footer {
+            margin-top: 30px;
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <span class="emoji">🚀</span>
+        <h1>Welcome to My S3 Website!</h1>
+        <p>This static website is hosted on Amazon S3</p>
+        <p>Built and deployed entirely with Terraform</p>
+        
+        <div class="tech-stack">
+            <p><strong>Tech Stack:</strong></p>
+            <span class="badge">AWS S3</span>
+            <span class="badge">Terraform</span>
+            <span class="badge">HTML/CSS</span>
+            <span class="badge">IaC</span>
+        </div>
+        
+        <div class="footer">
+            <p>🎯 Terraform Project #2 - S3 Static Website</p>
+        </div>
+    </div>
+</body>
+</html>

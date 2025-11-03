@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+        
+        .container {
+            text-align: center;
+            padding: 60px 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            max-width: 600px;
+        }
+        
+        h1 {
+            font-size: 8em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .emoji {
+            font-size: 5em;
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin: 15px 0;
+        }
+        
+        a {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 30px;
+            background: rgba(255, 255, 255, 0.3);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        a:hover {
+            background: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <span class="emoji">😕</span>
+        <h1>404</h1>
+        <p><strong>Oops! Page Not Found</strong></p>
+        <p>The page you're looking for doesn't exist on this S3 bucket.</p>
+        <a href="/">← Go Home</a>
+    </div>
+</body>
+</html>
