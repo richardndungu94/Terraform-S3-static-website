@@ -1,6 +1,6 @@
-# Terraform S3 Static Website with DevSecOps Security Pipeline
+# Terraform S3 Static Website with DevSecOps Security Pipeline - (AWS Cloud Iac Security)
 
-A practical guide to deploying a secure S3 static website using Terraform, with automated security scanning integrated into GitHub Actions. Learn how professional teams build secure cloud infrastructure today.
+This project deploys a secure S3 static website using Terraform, with automated security scanning integrated into GitHub Actions. A cloud based Project.
 
 ---
 
@@ -46,7 +46,8 @@ Your security pipeline runs automatically on every code change. You get instant 
 - ✅ Clear path to fixing security issues
 
 **Real-World Application:**
-This is exactly how companies like Google, Netflix, and AWS build their own infrastructure. It's not "best practice"—it's just standard practice at scale.
+
+This is project demonstrate how companies build their own infrastructure,a standard practice to deploy cloud based infrastructure.
 
 ---
 
@@ -102,7 +103,7 @@ This project prevents all four through automated scanning.
 
 ### What "Shift-Left" Really Means
 
-Security professionals talk about moving security concerns to the "left" of the development timeline. In other words: catch problems earlier.
+Catch the problem earlier before production. Ensure security principals are embedded from beginning to the end of the project. 
 
 ```
 Your Development Timeline (Left to Right)
@@ -250,10 +251,10 @@ A threat model answers: "What could go wrong, who might do it, and what's the im
 # Use CloudFront + Origin Access Identity
 # This restricts direct bucket access, only CDN can read
 resource "aws_s3_bucket_public_access_block" "website" {
-  block_public_acls       = true      # ✅ Block public ACLs
-  block_public_policy     = true      # ✅ Block policies
-  ignore_public_acls      = true      # ✅ Ignore any existing ACLs
-  restrict_public_buckets = true      # ✅ Restrict all public
+  block_public_acls       = true      # Block public ACLs
+  block_public_policy     = true      #  Block policies
+  ignore_public_acls      = true      #  Ignore any existing ACLs
+  restrict_public_buckets = true      #  Restrict all public
 }
 ```
 
@@ -281,7 +282,7 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "website" {
   bucket = aws_s3_bucket.website.id
   rule {
     apply_server_side_encryption_by_default {
-      sse_algorithm = "AES256"  # ✅ Encrypt at rest
+      sse_algorithm = "AES256"  # Encrypt at rest
     }
   }
 }
@@ -311,7 +312,7 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "website" {
 resource "aws_s3_bucket_logging" "website" {
   bucket        = aws_s3_bucket.website.id
   target_bucket = aws_s3_bucket.logging.id  # Separate bucket
-  target_prefix = "website-access-logs/"    # ✅ Track all access
+  target_prefix = "website-access-logs/"    # Track all access
 }
 ```
 
@@ -338,7 +339,7 @@ resource "aws_s3_bucket_logging" "website" {
 resource "aws_s3_bucket_versioning" "website" {
   bucket = aws_s3_bucket.website.id
   versioning_configuration {
-    status = "Enabled"  # ✅ Keep all versions
+    status = "Enabled"  # Keep all versions
   }
 }
 ```
@@ -367,7 +368,7 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "= 5.42.0"  # ✅ Pin exact version, not range
+      version = "= 5.42.0"  # Pin exact version, not range
     }
   }
 }
@@ -1801,4 +1802,21 @@ You've learned how to:
 
 
 ## Index
+
 # Project Images
+The images below are from the project. 
+
+**tfsec security results**
+
+![Alt text](/images/terraform12.png)
+
+**tfsec exposed vulnerability**
+
+![Alt text](/images/terraform13.png)
+
+**S3-web-server**
+
+![Alt text](/images/terraform14.png)
+
+
+
